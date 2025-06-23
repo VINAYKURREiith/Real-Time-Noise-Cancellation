@@ -1,0 +1,51 @@
+function [y, snr_before, snr_after, snr_gain] = LMS(w, noisy_speech, clean_speech)
+    % NLMS parameters
+    mu = 0.005;        % Step size
+    M = 2;             % Filter length
+    N = length(w);     % Number of samples
+
+    % Initialization
+    w_hat = zeros(M, 1);     % Filter weights
+    v_hat = zeros(N, 1);     % Estimated noise
+    y = zeros(N, 1);         % Output clean speech
+    e = zeros(N, 1);         % Error signal
+
+    % Adaptive filtering loop
+    for n = 1:N
+        % Form input buffer from past M samples of w(n)
+        buffer = zeros(M, 1);
+        for k = 1:M
+            idx = n - k + 1;
+            if idx > 0
+                buffer(k) = w(idx);
+            end
+        end
+
+        % Noise estimation
+        v_hat(n) = w_hat' * buffer;
+
+        % Clean speech estimate
+        y(n) = noisy_speech(n) - v_hat(n);
+
+        % Error
+        e(n) = y(n);
+
+        % NLMS weight update
+        w_hat = w_hat + mu * e(n) * buffer;
+    end
+
+    % SNR calculation
+    noise_before = noisy_speech - clean_speech;
+    noise_after = y - clean_speech;
+
+    snr_before = 10 * log10(sum(clean_speech.^2) / sum(noise_before.^2));
+    snr_after = 10 * log10(sum(clean_speech.^2) / sum(noise_after.^2));
+    snr_gain = snr_after - snr_before;
+
+    % Plotting
+    t = (0:N-1)/44100;
+    figure;
+    subplot(3,1,1); plot(t, noisy_speech); title('Noisy Speech s(n)+v(n)'); xlabel('Time (s)');
+    subplot(3,1,2); plot(t, y); title('LMS Output (Estimated Clean Speech s(n))'); xlabel('Time (s)');
+    subplot(3,1,3); plot(t, clean_speech); title('Ground Truth Clean Speech s(n)'); xlabel('Time (s)');
+end
