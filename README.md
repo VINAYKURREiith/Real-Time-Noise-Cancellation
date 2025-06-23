@@ -51,10 +51,10 @@ Final implementation is based on **RLS** due to its superior SNR improvement and
 ## 🚀 How to Run
 
 1. Clone the repository:
-   ```bash
+   ``` bash
    git clone https://github.com/yourusername/real-time-noise-cancellation.git
    cd real-time-noise-cancellation
-````
+   ```
 
 2. Run any of the adaptive filter demos:
 
