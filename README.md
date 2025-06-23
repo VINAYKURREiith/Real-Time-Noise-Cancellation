@@ -118,11 +118,11 @@ real-time-noise-cancellation/
 ├── lms/                   # LMS implementation
 ├── nlms/                  # NLMS implementation
 ├── rls/                   # Final RLS system
-├── clean\_data/            # Reference clean signals
-├── noisy\_data/            # Noisy speech inputs
-├── plots/                 # Generated graphs
-├── results/               # SNR, filter weights, outputs
-├── problems\_encountered.md # Challenges & resolutions
+├── OUTPUT/                # SNR, filter weights, outputs
+├── speeches/              # speech inputs
+├── images/                # Generated graphs
+├── DesignReview/          # REview of project and design
+├── problems\_statements  
 └── README.md              # This file
 
 ````
