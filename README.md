@@ -1,11 +1,11 @@
 
-# 🎧 Real-Time Noise Cancellation using LMS, NLMS, and RLS
+# Real-Time Noise Cancellation using LMS, NLMS, and RLS
 
 This project is part of the EE2800 – Digital Signal Processing course at IIT Hyderabad. It implements adaptive filters to cancel noise from speech signals in real time. The final design leverages the **Recursive Least Squares (RLS)** algorithm for its superior convergence and noise suppression performance.
 
 ---
 
-## 🧠 Problem Overview
+##  Problem Overview
 
 Design a **programmable, selective noise canceller** that:
 
@@ -17,7 +17,7 @@ Design a **programmable, selective noise canceller** that:
 
 ---
 
-## 📊 System Block Diagram
+##  System Block Diagram
 
 ![Block Diagram](./images/block%20diagram.jpg)
 
@@ -27,7 +27,7 @@ Design a **programmable, selective noise canceller** that:
 
 ---
 
-## ⚙️ Algorithms Implemented
+##  Algorithms Implemented
 
 - **LMS (Least Mean Squares)**: Simple, slow convergence  
 - **NLMS (Normalized LMS)**: Scaled adaptation, moderate convergence  
@@ -37,33 +37,33 @@ The RLS algorithm was selected for the final system.
 
 ---
 
-## 🧪 Design Insights (from Experiments)
+##  Design Insights (from Experiments)
 
-### 🔧 Filter Order (M)
+###  Filter Order (M)
 ![SNR vs Filter Order](./images/filter%20order.jpg)  
 **Best performance at M = 13**
 
-### 🔧 Forgetting Factor (λ)
+###  Forgetting Factor (λ)
 ![SNR vs Forgetting Factor](./images/forgetting%20factor.jpg)  
 **Optimal λ = 1**, yields best balance between memory and responsiveness
 
-### 🔧 Initialization Parameter (Δ)
+###  Initialization Parameter (Δ)
 ![SNR vs Delta](./images/delta.jpg)  
 **Best Δ ~ 3.79×10⁻¹³** achieves highest SNR gain
 
 ---
 
-## 🔁 Convergence & Comparison
+##  Convergence & Comparison
 
 ### Absolute Error vs Iterations and SNR vs Iterations
 ![Convergence Graph](./images/literation%20error%20compartion.jpg)
 
-> 🟦 LMS | 🟥 NLMS | 🟩 RLS  
+>  LMS |  NLMS |  RLS  
 > RLS clearly outperforms LMS and NLMS in error reduction and SNR gain
 
 ---
 
-## 🔉 Audio Results
+##  Audio Results
 
 ### NLMS Output vs Ground Truth
 ![NLMS Comparison](./images/graph%20nlms.jpg)
@@ -73,7 +73,7 @@ The RLS algorithm was selected for the final system.
 
 ---
 
-## 📈 Parameter Sweep – NLMS
+##  Parameter Sweep – NLMS
 
 ### Step Size (μ) vs SNR Gain
 ![Step Size NLMS](./images/step%20size.jpg)
@@ -82,7 +82,7 @@ The RLS algorithm was selected for the final system.
 
 ---
 
-## 📐 RLS Algorithm Details
+##  RLS Algorithm Details
 
 - **Error Function**:  
   \( E(n) = \sum_{i=0}^{n} \lambda^{n-i} e^2(i) \), where \( e(i) = d(i) - w_n^T x(i) \)
@@ -96,7 +96,7 @@ The RLS algorithm was selected for the final system.
 - **Error**:  
   \( \alpha(n) = e(n) - w_{n-1}^T x(n) \)
 
-### ⛔ Notch Filter for Partial Suppression
+###  Notch Filter for Partial Suppression
 
 Transfer Function:  
 \[
@@ -110,7 +110,7 @@ y(n) = a_1 y(n-1) - a_2 y(n-2) + b_0 x(n) - b_1 x(n-1) + b_2 x(n-2)
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```
 
@@ -129,7 +129,7 @@ real-time-noise-cancellation/
 
 ---
 
-## 🚀 Running the Code
+##  Running the Code
 
 1. Clone the repo:
    ```bash
@@ -145,7 +145,7 @@ real-time-noise-cancellation/
 
 ---
 
-## 🧠 Key Takeaways
+##  Key Takeaways
 
 * RLS significantly outperforms LMS and NLMS in convergence and suppression
 * Optimal parameters determined through empirical analysis
@@ -153,14 +153,14 @@ real-time-noise-cancellation/
 
 ---
 
-## 📚 References
+##  References
 
 * M. H. Hayes, *Statistical Digital Signal Processing and Modeling*, Wiley, 1996
 * P. S. R. Diniz, *Adaptive Filtering: Algorithms and Practical Implementation*, Springer, 2020
 
 ---
 
-## 📜 License
+##  License
 
 This project is part of the IIT Hyderabad EE2800 course and is intended for academic use only.
 
